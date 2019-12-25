@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hetian.account.infrastructure.DetailedRecordMapper">
+
+    <resultMap id="DetailedRecordResultMap" type="DetailedRecord">
+        <result column="Name" property="name" />
+        <result column="Content" property="content" />
+        <result column="Type" property="categoryType" />
+        <result column="Note" property="note" />
+        <result column="Occurredtime" property="occurredTime" />
+        <result column="Amount" property="amount" />
+    </resultMap>
+
+    <select id="queryAllRecords" resultMap="DetailedRecordResultMap">
+        select Name, Content, Type, Note, Occurredtime, Amount from Account_Details
+    </select>
+
+    <insert id="addRecord" parameterType="DetailedRecord">
+        insert into Account_Details(Name, Content, Type, Note, Occurredtime, Amount) values
+        (#{name}, #{content}, #{categoryType}, #{note},#{occurredTime},#{amount})
+    </insert>
+</mapper>
